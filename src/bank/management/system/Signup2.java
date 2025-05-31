@@ -19,7 +19,7 @@ public class Signup2 extends JFrame implements ActionListener {
 
 
 
-    Signup2(String first){
+    Signup2(String formno){
         super("Application Form...");
 
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/bank.png"));
@@ -95,8 +95,8 @@ public class Signup2 extends JFrame implements ActionListener {
         l7.setBounds(100,340,150,30);
         add(l7);
 
-        String qualification[]={"Salarird","Self-Employed","Buisness","Student", "Retired","Other"};
-        comboBox5= new JComboBox(educational);
+        String Occupation[]={"Salaried","Self-Employed","Buisness","Student", "Retired","Other"};
+        comboBox5= new JComboBox(Occupation);
         comboBox5.setFont(new Font("Ralway",Font.BOLD,14));
         comboBox5.setBackground(new Color(169, 216, 207));
         comboBox5.setBounds(350,340,320,30);
@@ -174,8 +174,8 @@ public class Signup2 extends JFrame implements ActionListener {
         add(l12);
 
         JLabel l13=new JLabel(formno);
-        l13.setFont(new Font("Raleway",Font.BOLD,18));
-        l13.setBounds(760,10,30,30);
+        l13.setFont(new Font("Raleway",Font.BOLD,12));
+        l13.setBounds(780,10,30,30);
         add(l13);
 
         next= new JButton("Next");
@@ -214,6 +214,45 @@ public class Signup2 extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+          String rel =(String) comboBox.getSelectedItem();
+          String cate=(String) comboBox2.getSelectedItem();
+          String inc=(String) comboBox3.getSelectedItem();
+          String edu= (String) comboBox4.getSelectedItem();
+          String occ=(String) comboBox5.getSelectedItem();
+
+          String pan =textPan.getText();
+          String aadhar=textAadhar.getText();
+
+          String scitizen="";
+          if(r1.isSelected()){
+              scitizen="Yes";
+          } else if (r2.isSelected()) {
+              scitizen="No";
+          }
+
+        String eAccount="";
+        if(r1.isSelected()){
+            eAccount="Yes";
+        } else if (r2.isSelected()) {
+            eAccount="No";
+        }
+
+        try {
+            if(textPan.getText().equals("")|| textAadhar.getText().equals("")){
+                JOptionPane.showMessageDialog(null,"Fill all the fields");
+            }else {
+                Con c1=new Con();
+                String q="Insert into Signuptwo values('"+formno+"','"+rel+"','"+cate+"','"+inc+"','"+edu+"','"+occ+"','"+pan+"','"+aadhar+"','"+scitizen+"','"+eAccount+"')";
+                c1.statement.executeUpdate(q);
+                new Signup3(formno);
+                setVisible(false);
+            }
+
+        }catch (Exception E){
+            E.printStackTrace();
+        }
+
+
 
     }
 
