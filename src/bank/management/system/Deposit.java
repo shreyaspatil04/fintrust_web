@@ -16,6 +16,7 @@ public class Deposit extends JFrame implements ActionListener {
 
     Deposit(String pin){
         this.pin=pin;
+
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/atm2.png"));
         Image i2 =i1.getImage().getScaledInstance(1550,830,Image.SCALE_DEFAULT);
         ImageIcon i3= new ImageIcon(i2);
@@ -87,9 +88,12 @@ public class Deposit extends JFrame implements ActionListener {
                     c.statement.executeUpdate("insert into bank values('"+pin+"', '"+date+"', 'Deposit','"+amount+"')");
                     JOptionPane.showMessageDialog(null,"RS. "+amount+" Deposited Successfully");
                     setVisible(false);
+                    new main_Class(pin);
                 }
             } else if (e.getSource()==b2) {
                 setVisible(false);
+                new main_Class(pin);
+
             }
         } catch (Exception E) {
             E.printStackTrace();
