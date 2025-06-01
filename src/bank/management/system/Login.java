@@ -38,7 +38,7 @@ public class Login extends JFrame implements ActionListener {
         label1 = new JLabel("WELCOME TO FINTRUST WEB");
         label1.setForeground(Color.WHITE);
         label1.setFont(new Font("AvantGarde", Font.BOLD, 38));
-        label1.setBounds(230, 125, 450, 40);
+        label1.setBounds(170, 125, 700, 40);
         add(label1);
 
         label2 = new JLabel("Card No:");
